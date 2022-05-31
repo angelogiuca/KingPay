@@ -6,12 +6,20 @@
     public interface IDepositService
     {
         /// <summary>
+        /// Retrieve the payment transaction by either transaction id or partner transaction id
+        /// </summary>
+        /// <param name="transactionId"></param>
+        /// <param name="partnerId"></param>
+        /// <returns></returns>
+        ValueTask GetPaymentAsync(string transactionId, string partnerTransactionId);
+
+        /// <summary>
         /// Sets the last Payment Method
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="paymentMethod"></param>
         /// <returns></returns>
-        ValueTask CreatePayment(string userId, string paymentMethod);
+        ValueTask CreatePaymentAsync(string userId, string paymentMethod);
 
         /// <summary>
         /// Responsible for setting the first successful deposit of a user
@@ -19,23 +27,31 @@
         /// <param name="userId"></param>
         /// <param name="transactionId"></param>
         /// <returns></returns>
-        ValueTask UpdatePayment(string userId, string transactionId);
+        ValueTask UpdatePaymentAsync(string userId, string transactionId);
     }
 
     /// <inheritdoc/>
     public class DepositService : IDepositService
     {
         /// <inheritdoc/>
-        public async ValueTask CreatePayment(string userId, string transactionId)
+        public async ValueTask GetPaymentAsync(string transactionId, string partnerId)
         {
-            //CE to expose endpoint for updating user extra details
             throw new NotImplementedException();
         }
 
         /// <inheritdoc/>
-        public async ValueTask UpdatePayment(string userId, string paymentMethod)
+        public async ValueTask CreatePaymentAsync(string userId, string transactionId)
         {
-            //CE to expose endpoint for updating user extra details
+            //get merchant financy system endpoint url
+            //post http payment command (integrations-betking.services/CreateTransaction)
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc/>
+        public async ValueTask UpdatePaymentAsync(string userId, string paymentMethod)
+        {
+            //get merchant financy system endpoint url
+            //post http payment command (integrations-betking.services/UpdateTransactionStatus)
             throw new NotImplementedException();
         }
     }

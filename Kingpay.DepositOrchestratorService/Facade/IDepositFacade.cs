@@ -2,11 +2,15 @@
 
 namespace Kingpay.DepositOrchestratorService.Facade
 {
+
     /// <summary>
     /// The facade for the deposit use cases
     /// </summary>
     public interface IDepositFacade
     {
+        //string UniqueId { get; }
+
+
         /// <summary>
         /// Deposit initialization use case
         /// </summary>
@@ -19,5 +23,18 @@ namespace Kingpay.DepositOrchestratorService.Facade
         /// </summary>
         /// <returns></returns>
         ValueTask UpdateDeposit();
+    }
+
+    public interface ICardFacade : IDepositFacade
+    {
+    }
+
+
+    public interface IMomoFacade : IDepositFacade
+    {
+    }
+
+    public interface IOfflineFacade : IDepositFacade
+    {
     }
 }

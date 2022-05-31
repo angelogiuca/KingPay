@@ -19,5 +19,10 @@
         /// The description of the transaction operation
         /// </summary>
         public string ResponseMessage { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Additional parameters eventually needed (ie returnURL, partnerCallbackURL, etc...)
+        /// </summary>
+        public Dictionary<string, string>? Data { get; set; }
     }
 }
