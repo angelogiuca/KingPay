@@ -3,7 +3,7 @@
     /// <summary>
     /// The DTO for InitiateDeposit response
     /// </summary>
-    public class InitiateDepositResponseDTO
+    public record class InitiateDepositResponseDTO
     {
         /// <summary>
         /// Internal transaction Id

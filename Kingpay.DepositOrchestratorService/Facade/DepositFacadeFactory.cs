@@ -4,11 +4,8 @@ namespace Kingpay.DepositOrchestratorService.Facade
 {
     public interface IDepositFacadeFactory
     {
-        public IDepositFacade GetFacade(InitiateDepositRequestDTO initiateDepositRequestDTO);
+        public IDepositFacade GetFacade(int instrument, string paymentMethod);
     }
-
-    
-
 
     public class DepositFacadeFactory : IDepositFacadeFactory
     {
@@ -19,16 +16,12 @@ namespace Kingpay.DepositOrchestratorService.Facade
             _allFacades = allFacades;
         }
 
-        public IDepositFacade GetFacade(InitiateDepositRequestDTO initiateDepositRequestDTO)
+        public IDepositFacade GetFacade(int instrument, string paymentMethod)
         {
-            /// Read from config table
-            /// <summary>
-            /// brandid, intrusment key, facadename
-            /// </summary>
+            //retrieve the flow from db given instrument and paymentMethod
+            string depositFlowId = "IdFromConfigTable";
 
-            //return _allFacades.Single(x => x.UniqueId == "IdFromConfigTable")
-
-            throw new NotImplementedException();
+            return _allFacades.Single(x => x.DepositFlowId == depositFlowId);
         }
     }
 }

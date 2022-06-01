@@ -8,8 +8,10 @@ namespace Kingpay.DepositOrchestratorService.Facade
     /// </summary>
     public interface IDepositFacade
     {
-        //string UniqueId { get; }
-
+        /// <summary>
+        /// A unique identifier for the flow
+        /// </summary>
+        string DepositFlowId { get; }
 
         /// <summary>
         /// Deposit initialization use case
@@ -25,16 +27,16 @@ namespace Kingpay.DepositOrchestratorService.Facade
         ValueTask UpdateDeposit();
     }
 
-    public interface ICardFacade : IDepositFacade
+    public interface ICardDepositFacade : IDepositFacade
     {
     }
 
 
-    public interface IMomoFacade : IDepositFacade
+    public interface IMoMoDepositFacade : IDepositFacade
     {
     }
 
-    public interface IOfflineFacade : IDepositFacade
+    public interface IOfflineDepositFacade : IDepositFacade
     {
     }
 }
