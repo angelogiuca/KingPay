@@ -1,4 +1,4 @@
-﻿namespace Kingpay.DepositOrchestratorService.Facade.DTO
+﻿namespace Kingpay.DepositOrchestrator.Facade.DTO
 {
     /// <summary>
     /// The DTO for InitiateDeposit response

@@ -1,9 +1,9 @@
-﻿using Kingpay.DepositOrchestratorService.Facade.DTO;
-using Kingpay.DepositOrchestratorService.Services;
+﻿using Kingpay.DepositOrchestrator.Facade.DTO;
+using Kingpay.DepositOrchestrator.Services;
 
-namespace Kingpay.DepositOrchestratorService.Facade
+namespace Kingpay.DepositOrchestrator.Facade
 {
-    public abstract class BaseFacade : IDepositFacade
+    public abstract class BaseFacade
     {
         private readonly IDepositService _depositService;
 
@@ -20,7 +20,7 @@ namespace Kingpay.DepositOrchestratorService.Facade
             throw new NotImplementedException();
         }
 
-        public ValueTask UpdateDeposit()
+        public ValueTask SettleDeposit()
         {
             throw new NotImplementedException();
         }

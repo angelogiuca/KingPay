@@ -1,6 +1,6 @@
-﻿using Kingpay.DepositOrchestratorService.Facade.DTO;
+﻿using Kingpay.DepositOrchestrator.Facade.DTO;
 
-namespace Kingpay.DepositOrchestratorService.Facade
+namespace Kingpay.DepositOrchestrator.Facade
 {
 
     /// <summary>
@@ -21,10 +21,10 @@ namespace Kingpay.DepositOrchestratorService.Facade
         ValueTask<InitiateDepositResponseDTO> InitiateDepositAsync(InitiateDepositRequestDTO initiateDepositRequestDTO);
         
         /// <summary>
-        /// Deposit update use case
+        /// Deposit settlement use case
         /// </summary>
         /// <returns></returns>
-        ValueTask UpdateDeposit();
+        ValueTask SettleDeposit();
     }
 
     public interface ICardDepositFacade : IDepositFacade

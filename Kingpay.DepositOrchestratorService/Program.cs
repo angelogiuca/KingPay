@@ -1,15 +1,14 @@
-using Kingpay.DepositOrchestratorService.Facade;
-using Kingpay.DepositOrchestratorService.Services;
+using Kingpay.DepositOrchestrator.Facade;
+using Kingpay.DepositOrchestrator.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IDepositFacadeFactory, DepositFacadeFactory>();
-builder.Services.AddScoped<IDepositService, DepositService>();
-builder.Services.AddScoped<IDepositFacade, BaseFacade>();
 builder.Services.AddScoped<IDepositFacade, CardDepositFacade>();
 builder.Services.AddScoped<IDepositFacade, MoMoDepositFacade>();
 builder.Services.AddScoped<IDepositFacade, OfflineDepositFacade>();
+builder.Services.AddScoped<IDepositService, DepositService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

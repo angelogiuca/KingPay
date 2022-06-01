@@ -1,6 +1,4 @@
-﻿using Kingpay.DepositOrchestratorService.Facade.DTO;
-
-namespace Kingpay.DepositOrchestratorService.Facade
+﻿namespace Kingpay.DepositOrchestrator.Facade
 {
     public interface IDepositFacadeFactory
     {

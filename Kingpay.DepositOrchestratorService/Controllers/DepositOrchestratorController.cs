@@ -1,5 +1,5 @@
-﻿using Kingpay.DepositOrchestratorService.Facade;
-using Kingpay.DepositOrchestratorService.Facade.DTO;
+﻿using Kingpay.DepositOrchestrator.Facade;
+using Kingpay.DepositOrchestrator.Facade.DTO;
 using Kingpay.DepositOrchestratorService.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +10,6 @@ namespace Kingpay.GatewayService.Controllers
     public class DepositOrchestratorController : ControllerBase
     {
         private readonly IDepositFacadeFactory _depositFacadeFactory;
-        private IDepositFacade _depositFacade { get; set; }
 
         public DepositOrchestratorController(IDepositFacadeFactory depositFacadeFactory)
         {
@@ -46,9 +45,9 @@ namespace Kingpay.GatewayService.Controllers
                 initiateDepositRequestDTO.Data = new Dictionary<string, string>(initiateDepositRequest.Data);
             }
 
-            _depositFacade = _depositFacadeFactory.GetFacade(instrument, paymentMethod);
+            var depositFacade = _depositFacadeFactory.GetFacade(instrument, paymentMethod);
 
-            InitiateDepositResponseDTO initiateDepositResponseDTO = await _depositFacade.InitiateDepositAsync(initiateDepositRequestDTO);
+            InitiateDepositResponseDTO initiateDepositResponseDTO = await depositFacade.InitiateDepositAsync(initiateDepositRequestDTO);
 
             InitiateDepositResponse initiateDepositResponse = new()
             {

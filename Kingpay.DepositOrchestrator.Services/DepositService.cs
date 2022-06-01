@@ -1,4 +1,4 @@
-﻿namespace Kingpay.DepositOrchestratorService.Services
+﻿namespace Kingpay.DepositOrchestrator.Services
 {
     /// <summary>
     /// The deposit service
