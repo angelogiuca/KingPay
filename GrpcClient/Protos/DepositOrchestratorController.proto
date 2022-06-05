@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option csharp_namespace = "Kingpay.DepositOrchestratorService.Protos";
+
+package DepositOrchestratorService;
+
+service DepositOrchestrationControllerGrpc {
+    rpc GetDeposit (GetDepositRequest) returns (GetDepositResponse);
+	rpc	InitiateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse);
+}
+
+message GetDepositRequest {
+    string TransactionId = 1;
+    string PartnerTransactionId = 2;
+}
+
+message GetDepositResponse {
+    string TransactionId = 1;
+    string PartnerTransactionId = 2;
+    double Amount = 3;
+}
+
+message InitiateDepositRequest {
+    string UserId  = 1;
+    double Amount = 2;
+    string Currency = 3;
+    string Instrument = 4;
+    string PaymentMethod = 5;
+    string PaymentIpAddress = 6;
+    map<string, string> CardInfo = 7;
+    map<string, string> BankInfo = 8;
+    map<string, string> WalletInfo = 9;
+}
+
+message InitiateDepositResponse {
+    string TransactionId  = 1;
+    string ResponseCode = 2;
+    string ResponseMessage = 3;
+    map<string, string> CardInfo = 4;
+    map<string, string> BankInfo = 5;
+    map<string, string> WalletInfo = 6;
+}

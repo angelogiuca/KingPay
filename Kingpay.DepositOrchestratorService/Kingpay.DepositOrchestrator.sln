@@ -5,11 +5,13 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kingpay.DepositOrchestrator", "Kingpay.DepositOrchestrator.csproj", "{24049CFF-4541-4DA2-93E0-C8949FAD9599}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingpay.DepositOrchestrator.Facade", "..\Kingpay.DepositOrchestrator.Facade\Kingpay.DepositOrchestrator.Facade.csproj", "{09679254-4824-410E-921A-A9CB22A7377E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kingpay.DepositOrchestrator.Facade", "..\Kingpay.DepositOrchestrator.Facade\Kingpay.DepositOrchestrator.Facade.csproj", "{09679254-4824-410E-921A-A9CB22A7377E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingpay.DepositOrchestrator.Services", "..\Kingpay.DepositOrchestrator.Services\Kingpay.DepositOrchestrator.Services.csproj", "{424A412F-1D92-4C68-9F3D-52FC95A202B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kingpay.DepositOrchestrator.Services", "..\Kingpay.DepositOrchestrator.Services\Kingpay.DepositOrchestrator.Services.csproj", "{424A412F-1D92-4C68-9F3D-52FC95A202B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingpay.DepositOrchestrator.Domain", "..\Kingpay.DepositOrchestrator.Domain\Kingpay.DepositOrchestrator.Domain.csproj", "{2A93EBEE-8246-43C3-A97F-DBB88F5088D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kingpay.DepositOrchestrator.Domain", "..\Kingpay.DepositOrchestrator.Domain\Kingpay.DepositOrchestrator.Domain.csproj", "{2A93EBEE-8246-43C3-A97F-DBB88F5088D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcClient", "..\GrpcClient\GrpcClient.csproj", "{914674D8-EF89-4502-BB3D-C4401986380A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2A93EBEE-8246-43C3-A97F-DBB88F5088D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A93EBEE-8246-43C3-A97F-DBB88F5088D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A93EBEE-8246-43C3-A97F-DBB88F5088D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{914674D8-EF89-4502-BB3D-C4401986380A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{914674D8-EF89-4502-BB3D-C4401986380A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{914674D8-EF89-4502-BB3D-C4401986380A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{914674D8-EF89-4502-BB3D-C4401986380A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

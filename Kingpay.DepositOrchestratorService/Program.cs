@@ -18,14 +18,9 @@ builder.Services
 
 var app = builder.Build();
 
-app.UseRouting();
-
-app.UseDeveloperExceptionPage();
-
 app.MapGrpcService<DepositOrchestratorController>();
 
-app.MapGet("/getdeposit", async context =>
-      await context.Response.WriteAsync("haqq alla")        
+app.MapGet("/getdeposit", () => "haqq alla"        
 );
 
 //app.MapPost("/initiatedeposit",

@@ -43,8 +43,8 @@ namespace Kingpay.DepositOrchestrator.Facade.Implementations
 
             return await ValueTask.FromResult(new GetDepositResponseDTO 
             {
-                TransactionId = "123",
-                PartnerTransactionId = "abc",
+                TransactionId = result.TransactionId,
+                PartnerTransactionId = result.PartnerTransactionId,
                 Amount = result.Amount
             });
         }
