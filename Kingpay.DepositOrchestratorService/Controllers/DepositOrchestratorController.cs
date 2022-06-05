@@ -1,62 +1,39 @@
-﻿using Kingpay.DepositOrchestrator.Facade;
+﻿using Grpc.Core;
 using Kingpay.DepositOrchestrator.Facade.DTO;
-using Kingpay.DepositOrchestratorService.Models;
-using Microsoft.AspNetCore.Mvc;
+using Kingpay.DepositOrchestrator.Facade.Interfaces;
+using Kingpay.DepositOrchestratorService.Protos;
 
-namespace Kingpay.GatewayService.Controllers
+namespace Kingpay.DepositOrchestratorService.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class DepositOrchestratorController : ControllerBase
+    public class DepositOrchestratorController : DepositOrchestrationControllerGrpc.DepositOrchestrationControllerGrpcBase
     {
-        private readonly IDepositFacadeFactory _depositFacadeFactory;
+        private readonly IDepositFacadeFactory _factory;
 
-        public DepositOrchestratorController(IDepositFacadeFactory depositFacadeFactory)
+        public DepositOrchestratorController(IDepositFacadeFactory factory)
         {
-            _depositFacadeFactory = depositFacadeFactory;
+            _factory = factory;
         }
 
-        [HttpGet]
-        [Route("Ping")]
-        public async ValueTask<string> Ping()
+        public override async Task<GetDepositResponse> GetDeposit(GetDepositRequest request, ServerCallContext context)
         {
-            return await ValueTask.FromResult("Pong");
-        }
+            IDepositFacade facade = _factory.GetFacade("card", "paymentmethod");
 
-
-        [HttpPost]
-        [Route("InitiateDeposit")]
-        public async ValueTask<InitiateDepositResponse> InitiateDeposit(InitiateDepositRequest initiateDepositRequest)
-        {
-            string paymentMethod = initiateDepositRequest.PaymentMethod;
-            int instrument = Convert.ToInt32(initiateDepositRequest.Instrument);
-
-            InitiateDepositRequestDTO initiateDepositRequestDTO = new()
+            GetDepositRequestDTO getDepositRequestDTO = new GetDepositRequestDTO 
             {
-                PaymentMethod = paymentMethod,
-                Amount = initiateDepositRequest.Amount,
-                PaymentIpAddress = initiateDepositRequest.PaymentIpAddress,
-                UserId = initiateDepositRequest.UserId,
-                Instrument = instrument
-            };
-            
-            if (initiateDepositRequest.Data?.Count > 0)
-            {
-                initiateDepositRequestDTO.Data = new Dictionary<string, string>(initiateDepositRequest.Data);
-            }
-
-            var depositFacade = _depositFacadeFactory.GetFacade(instrument, paymentMethod);
-
-            InitiateDepositResponseDTO initiateDepositResponseDTO = await depositFacade.InitiateDepositAsync(initiateDepositRequestDTO);
-
-            InitiateDepositResponse initiateDepositResponse = new()
-            {
-                TransactionId = initiateDepositResponseDTO.TransactionId,
-                ResponseCode = initiateDepositResponseDTO.ResponseCode,
-                ResponseMessage = initiateDepositResponseDTO.ResponseMessage
+                TransactionId = request.TransactionId,
+                PartnerTransactionId = request.PartnerTransactionId
             };
 
-            return await ValueTask.FromResult(initiateDepositResponse);
+            GetDepositResponseDTO? depositResponseDTO = await facade.GetDepositAsync(getDepositRequestDTO);
+
+            GetDepositResponse getDepositResponse = new ()
+            {
+                TransactionId = depositResponseDTO.TransactionId,
+                PartnerTransactionId = depositResponseDTO.PartnerTransactionId,
+                Amount = Convert.ToDouble(depositResponseDTO.Amount)
+            };
+
+            return getDepositResponse;
         }
     }
 }

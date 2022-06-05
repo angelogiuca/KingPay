@@ -7,15 +7,15 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Kingpay.DepositOrchestratorService.csproj", "."]
-RUN dotnet restore "./Kingpay.DepositOrchestratorService.csproj"
+RUN dotnet restore "./Kingpay.DepositOrchestrator.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "Kingpay.DepositOrchestratorService.csproj" -c Release -o /app/build
+RUN dotnet build "Kingpay.DepositOrchestrator.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Kingpay.DepositOrchestratorService.csproj" -c Release -o /app/publish
+RUN dotnet publish "Kingpay.DepositOrchestrator.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Kingpay.DepositOrchestratorService.dll"]
+ENTRYPOINT ["dotnet", "Kingpay.DepositOrchestrator.dll"]

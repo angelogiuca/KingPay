@@ -1,6 +1,6 @@
 ﻿using Kingpay.DepositOrchestrator.Facade.DTO;
 
-namespace Kingpay.DepositOrchestrator.Facade
+namespace Kingpay.DepositOrchestrator.Facade.Interfaces
 {
 
     /// <summary>
@@ -14,17 +14,18 @@ namespace Kingpay.DepositOrchestrator.Facade
         string DepositFlowId { get; }
 
         /// <summary>
+        /// Deposit retrieval use case
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        ValueTask<GetDepositResponseDTO> GetDepositAsync(GetDepositRequestDTO request);
+
+        /// <summary>
         /// Deposit initialization use case
         /// </summary>
         /// <param name="initiateDepositRequestDTO"></param>
         /// <returns></returns>
-        ValueTask<InitiateDepositResponseDTO> InitiateDepositAsync(InitiateDepositRequestDTO initiateDepositRequestDTO);
-        
-        /// <summary>
-        /// Deposit settlement use case
-        /// </summary>
-        /// <returns></returns>
-        ValueTask SettleDeposit();
+        //Task<InitiateDepositResponse> InitiateDepositAsync(InitiateDepositRequest initiateDepositRequestDTO);
     }
 
     public interface ICardDepositFacade : IDepositFacade
